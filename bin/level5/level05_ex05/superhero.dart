@@ -3,7 +3,7 @@ library superhero;
 
 class Hero {
   String name;
-  List tacticalGear = [];
+  List powers;
 
   Hero(this.name);
 
