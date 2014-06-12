@@ -1,26 +1,32 @@
-import 'dart:async';
+/**
+ * To introduce the Completer class, 
+ * in order to create a future and complete it later, without a known delay.
+ */
 
-class Char {
+import 'dart:async';
+import 'dart:math';
+
+class Character {
   String name;
   bool brave = false;
-  Timer moodChange;
   
-  Char(this.name) {
+  Character(this.name) {
     if (name.contains("Dart")) {
       brave = true;
     } 
   }
   
-  Future hooHah({int changeCount:9}) {
+  Future changeMood() {
+    var moodChanges = [];
+    var changeCount = new Random().nextInt(9);
     var interval = new Duration(milliseconds:1);
     var completer = new Completer();
-    var moodChanges = [];
-    moodChange = new Timer.periodic(interval, (t) {      
+    new Timer.periodic(interval, (t) {      
       brave = !brave;
       moodChanges.add(brave);
-      if (--changeCount == 0) {      
-        // t.________; <- cancel
-        t.cancel();       
+      if (--changeCount <= 0) {      
+        t.cancel();
+        // completer.________(moodChanges); <- complete
         completer.complete(moodChanges);
       }    
     }); 
@@ -29,9 +35,9 @@ class Char {
 }
 
 main() {
-  print('begin');
-  var char = new Char('Nasty Dog');
-  print('Is ${char.name} brave? ${char.brave}');
-  char.hooHah().then((mc) => print('${char.name} mood changes: $mc')); 
-  print('end');
+  print('begin main');
+  var character = new Character('Nasty Dog');
+  print('Is ${character.name} brave? ${character.brave}');
+  character.changeMood().then((mc) => print('${character.name} mood changes: $mc')); 
+  print('end main');
 }

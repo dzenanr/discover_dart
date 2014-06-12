@@ -1,12 +1,16 @@
 // former Broadcast Streams: level04_ex11
 
+/**
+ * To listen to a broadcast stream more than once.
+ */
+
 import 'dart:async';
 
-class Char {
+class Character {
   String name;
   bool brave = false;
   
-  Char(this.name) {
+  Character(this.name) {
     if (name.contains("Dart")) {
       brave = true;
     } 
@@ -16,19 +20,20 @@ class Char {
   bool get sidekick => !name.contains("Dart");
 }
 
-Stream watchChars() {
-  var chars = [new Char("The Dart"), new Char("Prof. Polymer"), 
-               new Char("Captain Dart"), new Char("Bullseye")];
+Stream watchCharacters() {
+  var characters = 
+    [new Character("The Dart"), new Character("Prof. Polymer"), 
+     new Character("Captain Dart"), new Character("Bullseye")]; 
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
   // add the next character into the stream.
   int index = 0; 
   new Timer.periodic(new Duration(seconds:1), (Timer t) {
-    if (index < chars.length) {
-      controller.add(chars[index++]);
+    if (index < characters.length) {
+      controller.add(characters[index++]);
     } else {
-      // no more chars left
+      // no more characters left
       t.cancel(); 
       controller.close();
      }
@@ -39,20 +44,20 @@ Stream watchChars() {
 }
 
 main() { 
-  var stream = watchChars();
+  var stream = watchCharacters();
   var broadcastStream = stream.asBroadcastStream();
   // listen for heros
   broadcastStream
-    .where((char) => char.hero)
-    .listen((char) => print('Seen hero: ${char.name}'), 
-        onDone: () => print('No more heros'));
+    .where((character)  => character.hero)
+    .listen((character) => print('Seen hero: ${character.name}'), 
+             onDone: () => print('No more heros'));
   // listen for sidekicks
   // ________ <- broadcastStream
-  // ________ <-   .where((char) => char.sidekick)
-  // ________ <-   .listen((char) => print('Seen sidekick: ${char.name}'),  
-  // ________ <-       onDone: () => print('No more sidekicks'));
+  // ________ <-   .where((character)  => character.sidekick)
+  // ________ <-   .listen((character) => print('Seen sidekick: ${character.name}'),  
+  // ________ <-            onDone: () => print('No more sidekicks'));
   broadcastStream
-    .where((char) => char.sidekick)
-    .listen((char) => print('Seen sidekick: ${char.name}'),  
-        onDone: () => print('No more sidekicks'));
+    .where((character)  => character.sidekick)
+    .listen((character) => print('Seen sidekick: ${character.name}'),  
+             onDone: () => print('No more sidekicks'));
 }

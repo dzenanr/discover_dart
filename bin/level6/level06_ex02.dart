@@ -1,8 +1,11 @@
+/**
+ * To show the Timer.periodic constructor.
+ */
+
 import 'dart:async';
 
 class Countdown {
   int count, initialCount;
-  Timer timer;
   
   Countdown(this.count) {
     if (count < 0) {
@@ -13,27 +16,23 @@ class Countdown {
   
   start() {
     var interval = new Duration(seconds:1);
-    timer = new Timer.periodic(interval, countdown); 
+    // new Timer.________(interval, countdown); <- periodic
+    new Timer.periodic(interval, countdown); 
     print('countdown started with $count seconds to go');
   }
   
   countdown(Timer t) { // callback function
     print('${--count}');
     if (count == 0) {
+      // t.________; <- cancel()
       t.cancel();
-      // ________; <- countout()
-      countout();
+      print('after $initialCount seconds, fly');
     }
-  }
-  
-  countout() {  
-    print('after $initialCount seconds, fight');
   }
 }
 
 main() {
-  print('begin');
-  var countdown = new Countdown(9);
-  countdown.start();
-  print('end');
+  print('begin main');
+  new Countdown(3).start();
+  print('end main');
 }

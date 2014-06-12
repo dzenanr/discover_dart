@@ -1,30 +1,33 @@
+/**
+ * To introduce the Future.delayed constructor.
+ * To explain that you have to do something with a Future object,
+ * a transition to the use of then.
+ */
+ 
 import 'dart:async';
 
-class Char {
+class Character {
   String name;
   bool brave = false; 
   
-  Char(this.name) {
+  Character(this.name) {
     if (name.contains("Dart")) {
       brave = true;
     } 
   }
   
-  Future hoo() {
-    var completer = new Completer();
-    new Timer(new Duration(seconds:1), () {
+  Future encourage() {
+    // return new Future.________(new Duration(seconds:1), () { <- delayed
+    return new Future.delayed(new Duration(seconds:1), () {
       brave = true; 
-      // completer.complete(________); <- brave
-      completer.complete(brave);
     });
-    return completer.future;
   }
 }
 
 main() {
-  print('begin');
-  var char = new Char('Mild-mannered Reporter');
-  print('brave: ${char.brave}');
-  print(char.hoo());
-  print('end');
+  print('begin main');
+  var character = new Character('Mild-mannered Reporter');
+  print('brave: ${character.brave}');
+  print(character.encourage());
+  print('end main');
 }

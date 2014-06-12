@@ -1,30 +1,18 @@
+/**
+ * To introduce the Timer class.
+ */
+
 import 'dart:async';
 
-class Counter {
-  int count;
-  Timer timer;
-  
-  Counter(this.count) {
-    if (count < 0) {
-      count = count.abs();
-    }
-  }
-  
-  start() {
-    var duration = new Duration(seconds:count);
-    timer = new Timer(duration, countout); 
-    print('counter started with $count seconds to go');
-  }
-  
-  countout() { // callback function
-    print('after $count seconds, fly');
-  }
+count(int count) {
+  var duration = new Duration(seconds:count);
+  // new Timer(________, () => print('after $count seconds, fight')); <- duration
+  new Timer(duration, () => print('after $count seconds, fight')); 
+  print('counter started with $count seconds to go');
 }
 
 main() {
-  print('begin');
-  var counter = new Counter(3);
-  // counter.________; <- start()
-  counter.start();
-  print('end');
+  print('begin main');
+  count(2);
+  print('end main');
 }

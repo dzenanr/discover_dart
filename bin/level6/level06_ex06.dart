@@ -1,28 +1,33 @@
-import 'dart:async';
+/**
+ * To catch a complete error.
+ */
 
-class Char {
+import 'dart:async';
+import 'dart:math';
+
+class Character {
   String name;
   bool brave = false;
-  Timer moodChange;
   
-  Char(this.name) {
+  Character(this.name) {
     if (name.contains("Dart")) {
       brave = true;
     } 
   }
   
-  Future hooHah({int changeCount:9}) {
+  Future changeMood() {
     var completer = new Completer();
     if (brave) {
       // completer.________('$name is not moody.'); <- completeError
       completer.completeError('$name is not moody.');
     } else {
-      var interval = new Duration(milliseconds:1);
       var moodChanges = [];
-      moodChange = new Timer.periodic(interval, (t) {      
+      var changeCount = new Random().nextInt(9);
+      var interval = new Duration(milliseconds:1);
+      new Timer.periodic(interval, (t) {      
         brave = !brave;
         moodChanges.add(brave);
-        if (--changeCount == 0) {
+        if (--changeCount <= 0) {
           t.cancel();
           completer.complete(moodChanges);
         }    
@@ -33,13 +38,14 @@ class Char {
 }
 
 main() {
-  print('begin');
-  var char1 = new Char('Nasty Dog');
-  print('Is ${char1.name} brave? ${char1.brave}');
-  char1.hooHah().then((mc) => print('${char1.name} mood changes: $mc')); 
-  var char2 = new Char('Dartisan');
-  print('Is ${char2.name} brave? ${char2.brave}');
-  char2.hooHah().then((mc) => print('${char2.name} mood changes: $mc'))
-                .catchError((e) => print('Ouuups, $e'));
-  print('end');
+  print('begin main');
+  var character1 = new Character('Nasty Dog');
+  print('Is ${character1.name} brave? ${character1.brave}');
+  character1.changeMood().then((mc) => print('${character1.name} mood changes: $mc')); 
+  var character2 = new Character('Dartisan');
+  print('Is ${character2.name} brave? ${character2.brave}');
+  character2.changeMood()
+    .then((mc) => print('${character2.name} mood changes: $mc'))
+    .catchError((e) => print('Uuups, $e'));
+  print('end main');
 }

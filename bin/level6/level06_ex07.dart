@@ -1,29 +1,34 @@
+/**
+ * To introduce the Stream class, a source of asynchronous data events.
+ */
+
 import 'dart:async';
 
-class Char {
+class Character {
   String name;
   bool brave = false;
   
-  Char(this.name) {
+  Character(this.name) {
     if (name.contains("Dart")) {
       brave = true;
     } 
   }
 }
 
-Stream watchChars() {
-  var chars = [new Char("The Dart"), new Char("Prof. Polymer"), 
-               new Char("Captain Dart"), new Char("Bullseye")]; 
+Stream watchCharacters() {
+  var characters = 
+    [new Character("The Dart"), new Character("Prof. Polymer"), 
+     new Character("Captain Dart"), new Character("Bullseye")]; 
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
   // add the next character into the stream.
   int index = 0; 
   new Timer.periodic(new Duration(seconds:1), (Timer t) {
-    if (index < chars.length) {
-      controller.add(chars[index++]);
+    if (index < characters.length) {
+      controller.add(characters[index++]);
     } else {
-      // no more chars left
+      // no more characters left
       t.cancel(); 
       controller.close();
      }
@@ -34,8 +39,8 @@ Stream watchChars() {
 }
 
 main() {
-  var onChar = (char) => print('Just seen: ${char.name}');
-  var stream = watchChars();
-  // ________; <- stream.listen(onChar)
-  stream.listen(onChar);
+  var onCharacter = (character) => print('Just seen: ${character.name}');
+  var stream = watchCharacters();
+  // stream.listen(________); <- onCharacter
+  stream.listen(onCharacter);
 }
