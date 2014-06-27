@@ -23,4 +23,9 @@ main() {
   var yourFunction = (m, n) => "You divide: $m / $n = ${m / n}";                      ;   
   var yourAnswer = heroCalculator(10, 20, yourFunction);
   print(yourAnswer);
+  
+  var myFunction = (m, n) => "I divide: $m / $n = ${m / n}";
+  var myAnswer = heroCalculator(0, 20, myFunction);
+  myAnswer = heroCalculator(20, 0, myFunction);
+  print(myAnswer);
 }

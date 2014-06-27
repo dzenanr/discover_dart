@@ -15,4 +15,8 @@ main() {
     return "Prof. Polymer adds: $m + $n = ${m + n}"; 
   });
   print(answer2);
+ 
+  // var yourAnswer = heroCalculator(10, 20, ________); <- (m, n) => "You divide: $m / $n = ${m / n}"   
+  var yourAnswer = heroCalculator(10, 20, (m, n) => "You divide: $m / $n = ${m / n}");
+  print(yourAnswer);
 }
