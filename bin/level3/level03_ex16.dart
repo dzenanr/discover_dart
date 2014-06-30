@@ -1,14 +1,8 @@
 main() {
-  var heroes = {'The Dart':null};
+  var heroes = {'The Dart':'Hero', 'Prof. Polymer':'Sidekick'};
   
-  if (!heroes.containsKey('Prof. Polymer')) {
-    print("Prof. Polymer isn't in the map");
+  for (var key in heroes.keys) {
+    var value = heroes[key];
+    print('$key: status = $value');
   }
-  
-  heroes.putIfAbsent('Prof. Polymer', () {
-    print("Adding Prof. Polymer");
-    return 'Sidekick';
-  });
-  
-  print(heroes);  
 }

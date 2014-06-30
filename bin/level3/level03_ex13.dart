@@ -1,6 +1,14 @@
 main() {
-  var powers = {'The Dart':['Speed', 'Agility'], 'Prof. Polymer':'Super Hearing'}; 
-  powers['Captain Dart'] = ['Strength', 'Flying']; 
-  var power = powers['Captain Dart']; 
-  print("Captain Dart's power is: $power");
+  var heroes = {'The Dart':null};
+  
+  if (!heroes.containsKey('Prof. Polymer')) {
+    print("Prof. Polymer isn't in the map");
+  }
+  
+  heroes.putIfAbsent('Prof. Polymer', () {
+    print("Adding Prof. Polymer");
+    return 'Sidekick';
+  });
+  
+  print(heroes);  
 }

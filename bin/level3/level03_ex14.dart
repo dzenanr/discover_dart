@@ -1,6 +1,14 @@
 main() {
-  var powers = {'The Dart':['Speed', 'Agility'], 'Prof. Polymer':'Super Hearing'};
-  // ________; <- powers['Bullseye'] = ['Talking to animals']
-  powers['Bullseye'] = ['Talking to animals'];
-  print("Bullseye's status is: ${powers['Bullseye']}");
+  var heroes = {'The Dart':null};
+  
+  // ________ <- heroes.putIfAbsent('Captain Dart', () {
+  // ________ <-   return 'Hero';
+  // ________ <- });
+  heroes.putIfAbsent('Captain Dart', () {
+    return 'Hero';
+  });
+  
+  //heroes.putIfAbsent('Captain Dart', () => 'Hero');
+
+  print(heroes);  
 }
