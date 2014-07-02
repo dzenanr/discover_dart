@@ -1,5 +1,5 @@
 class SuperPower {
-  static const String FLIGHT = 'FLIGHT';
+  static const String FLIGHT = 'flight';
 }
 
 main() {

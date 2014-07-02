@@ -10,7 +10,7 @@ main() {
     ..name = 'The Dart'
     ..powers = ['flying', 'strength'];
   
-  // print('My hero can fly: ________'); 
+  // print('My hero can fly: ________'); <- ${myHero.canFly()}
   print('My hero can fly: ${myHero.canFly()}');
 }
 

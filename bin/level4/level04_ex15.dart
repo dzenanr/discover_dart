@@ -5,12 +5,12 @@ class Hero {
   //Hero(this.name, ________); <- this.powers   
   Hero(this.name, this.powers);
   
-  String toString() => '$name that has ${powers.join(', ')}.';
+  String toString() => '$name has ${powers.join(', ')}.';
 }
 
 main() {
   var hero = new Hero('The Dart', ['productivity', 'performance']);
-  print("My Hero is $hero");
+  print("$hero");
 }
 
 

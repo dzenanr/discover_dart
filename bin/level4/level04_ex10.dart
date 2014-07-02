@@ -1,6 +1,7 @@
 class Costume {
   bool boots = false;
   bool mask = false;
+  // ________; <- bool cape = false
   bool cape = false;
 }
 

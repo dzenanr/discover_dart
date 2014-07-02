@@ -3,8 +3,8 @@ class Hero {
 }
 
 main() {
-  var hero = new Hero();  // the default constructor in action
-  hero.name = 'The Dart';
+  var hero = new Hero()  // the default constructor in action
+    ..name = 'The Dart';
   print("My Hero is ${hero.name}");
 }
 

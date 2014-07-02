@@ -7,10 +7,10 @@ main() {
   var myHero = new Hero();
   
   // write data into the fields
-  // ________;
-  // ________;
+  // ________; <- myHero.name = "Captain Dart";
+  // ________; <- myHero.powers = ['Coding', 'Testing'];
   myHero.name = "Captain Dart";                    
-  myHero.powers = ['coding', 'testing'];
+  myHero.powers = ['Coding', 'Testing'];
   
   // read data from the fields
   print("My Hero is ${myHero.name}");

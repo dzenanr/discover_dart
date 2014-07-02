@@ -5,8 +5,8 @@ class Character {
 // class Hero ________ { <- extends Character
 class Hero extends Character {
   bool hasCape = true;
-
-  Hero(String name) {
+  // constructor
+  Hero(name) {
     this.name = name;
   }
 

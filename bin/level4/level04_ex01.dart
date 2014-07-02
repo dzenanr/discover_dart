@@ -1,5 +1,6 @@
 class Hero {
   String name;
+  // ________; <- List powers
   List powers;
 }
 

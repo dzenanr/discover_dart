@@ -1,8 +1,8 @@
 class SuperPower {
-  static const String FLIGHT = 'FLIGHT';
+  static const String FLIGHT = 'flight';
  
-  // ________ const String INVISIBILITY = 'INVISIBILITY'; <- static
-  static const String INVISIBILITY = 'INVISIBILITY';
+  // ________ const String INVISIBILITY = 'invisibility'; <- static
+  static const String INVISIBILITY = 'invisibility';
 }
 
 main() {

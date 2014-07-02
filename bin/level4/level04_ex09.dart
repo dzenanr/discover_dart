@@ -1,6 +1,7 @@
 class Hero {
   String name = '';
   List powers = [];
+  // ________; <- bool wearsCape = false
   bool wearsCape = false;
 
   bool canFly() => powers.contains('flying');

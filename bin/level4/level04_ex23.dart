@@ -7,7 +7,7 @@ class Character {
 class Hero extends Character {
   bool hasCape = true;
 
-  Hero(String name) {
+  Hero(name) {
     this.name = name;
   }
 }
@@ -15,7 +15,7 @@ class Hero extends Character {
 class Villain extends Character {
   bool isEvilGenius = false;
 
-  Villain(String name) {
+  Villain(name) {
     this.name = name;
   }
 }
