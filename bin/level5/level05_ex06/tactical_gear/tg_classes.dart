@@ -1,4 +1,4 @@
-
+// tactical_gear/tg_classes.dart
 part of tactical_gear;
 
 class Gear {

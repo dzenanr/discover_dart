@@ -1,0 +1,4 @@
+name: code_school
+description: A package use example.
+dependencies:
+  randomize: any

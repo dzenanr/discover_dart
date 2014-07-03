@@ -1,10 +1,9 @@
-// superhero.dart
+// superhero/superhero.dart
 library superhero;
 
-part 'hero.dart';
+part 'sh_classes.dart';
+part 'sh_functions.dart';
 
-powerUp(Hero hero) {
-  print("bombard with more gamma rays");
-}
+
 
 
