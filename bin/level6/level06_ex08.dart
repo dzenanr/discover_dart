@@ -15,10 +15,7 @@ class Character {
   }
 }
 
-Stream watchCharacters() {
-  var characters = 
-    [new Character("The Dart"), new Character("Prof. Polymer"), 
-     new Character("Captain Dart"), new Character("Bullseye")]; 
+Stream watchCharacters(List characters) {
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
@@ -39,9 +36,12 @@ Stream watchCharacters() {
 }
 
 main() {
+  var characters = 
+    [new Character("The Dart"), new Character("Prof. Polymer"), 
+     new Character("Captain Dart"), new Character("Bullseye")]; 
   var onCharacter = (c) => print('Just seen: ${c.name}');
-  var onNoMoreCharacters = () => print('No more characters');
-  var stream = watchCharacters();
-  // stream.listen(onCharacter, onDone: ________); <- onNoMoreCharacters
-  stream.listen(onCharacter, onDone: onNoMoreCharacters);
+  var noMoreCharacters = () => print('No more characters');
+  var stream = watchCharacters(characters);
+  // stream.listen(onCharacter, onDone: ________); <- noMoreCharacters
+  stream.listen(onCharacter, onDone: noMoreCharacters);
 }
