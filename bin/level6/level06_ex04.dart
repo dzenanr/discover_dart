@@ -25,7 +25,7 @@ main() {
   print('begin main');
   var character = new Character('Mild-mannered Reporter');
   print('brave: ${character.brave}');
-  // character.encourage().________((d) => print('brave: ${character.brave}')); <- then
-  character.encourage().then((d) => print('brave: ${character.brave}'));
+  // character.encourage().________((_) => print('brave: ${character.brave}')); <- then
+  character.encourage().then((_) => print('brave: ${character.brave}'));
   print('end main');
 }

@@ -18,8 +18,8 @@ class Character {
   
   Future changeMood() {
     var moodChanges = [];
-    var changeCount = new Random().nextInt(9);
-    var interval = new Duration(milliseconds:1);
+    var changeCount = new Random().nextInt(10);
+    var interval = new Duration(seconds:1);
     var completer = new Completer();
     new Timer.periodic(interval, (t) {      
       brave = !brave;

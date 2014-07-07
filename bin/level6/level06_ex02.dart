@@ -21,7 +21,7 @@ class Countdown {
     print('countdown started with $count seconds to go');
   }
   
-  countdown(Timer t) { // callback function
+  countdown(Timer t) { // callback 
     print('${--count}');
     if (count == 0) {
       // t.________; <- cancel()

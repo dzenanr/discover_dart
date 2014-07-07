@@ -46,6 +46,7 @@ main() {
   print('Is ${character2.name} brave? ${character2.brave}');
   character2.changeMood()
     .then((mc) => print('${character2.name} mood changes: $mc'))
+    // .________((e) => print('Uuups, $e')); <- catchError
     .catchError((e) => print('Uuups, $e'));
   print('end main');
 }
