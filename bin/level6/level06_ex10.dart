@@ -1,5 +1,5 @@
 /**
- * To filter sidekicks in a Stream.
+ * To filter heros in a Stream.
  */
 
 import 'dart:async';
@@ -14,12 +14,10 @@ class Character {
     } 
   }
   
-  bool get hero => brave;  
-  // bool get sidekick => !name.________; contains("Dart")
-  bool get sidekick => !name.contains("Dart");
+  bool get hero => brave;
 }
 
-Stream watchCharacters(List characters) {
+Stream watchCharacters(List characters) { 
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
@@ -42,10 +40,10 @@ Stream watchCharacters(List characters) {
 main() {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
-     new Character("Captain Dart"), new Character("Bullseye")]; 
+     new Character("Captain Dart"), new Character("Bullseye")];
   var onCharacter = (c) => print('Just seen: ${c.name}');
-  var noMoreSidekicks = () => print('No more sidekicks');
+  var noMoreHeros = () => print('No more heros');
   var stream = watchCharacters(characters);
-  // stream.________.listen(onCharacter, onDone: noMoreSidekicks); <- where((c) => c.sidekick)
-  stream.where((c) => c.sidekick).listen(onCharacter, onDone: noMoreSidekicks);
+  // stream.________.listen(onChar, onDone: noMoreHeros); <- where((c) => c.hero)
+  stream.where((c) => c.hero).listen(onCharacter, onDone: noMoreHeros);
 }

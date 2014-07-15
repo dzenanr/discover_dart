@@ -1,5 +1,5 @@
 /**
- * To introduce the Stream class, a source of asynchronous data events.
+ * To show the right way of chaining thens.
  */
 
 import 'dart:async';
@@ -8,39 +8,32 @@ class Character {
   String name;
   bool brave = false;
   
-  Character(this.name) {
-    if (name.contains("Dart")) {
+  Character(this.name);
+  
+  Future encourage() {
+    return new Future.delayed(new Duration(seconds:1), () {
       brave = true;
-    } 
+      return this; 
+    });
+  }
+  
+  Future discourage() {
+    if (name.contains('Dart')) {
+      return new Future.error('Dart cannot be discouraged');
+    } else {
+      return new Future.delayed(new Duration(seconds:1), () {
+        brave = false;
+        return this; 
+      });
+    }
   }
 }
 
-Stream watchCharacters(List characters) {
-  // Create a stream controller.
-  var controller = new StreamController();  
-  // Starting after 1 second, while not at the end of the list, 
-  // add the next character into the stream.
-  int index = 0; 
-  new Timer.periodic(new Duration(seconds:1), (Timer t) {
-    if (index < characters.length) {
-      controller.add(characters[index++]);
-    } else {
-      // no more characters left
-      t.cancel(); 
-      controller.close();
-     }
-  });
-  // Return the stream from the controller. 
-  // This will happen before the timer's first one-second tick.
-  return controller.stream;
-}
-
 main() {
-  var characters = 
-    [new Character("The Dart"), new Character("Prof. Polymer"), 
-     new Character("Captain Dart"), new Character("Bullseye")]; 
-  var onCharacter = (character) => print('Just seen: ${character.name}');
-  var stream = watchCharacters(characters);
-  // stream.listen(________); <- onCharacter
-  stream.listen(onCharacter);
+  print('begin main');
+  var reporter = new Character('Mild-mannered Reporter');
+  reporter.encourage()
+    .then((c) => c.discourage())
+    .then((c) => print('reporter is discouraged'));
+  print('end main');
 }

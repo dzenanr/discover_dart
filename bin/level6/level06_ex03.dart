@@ -10,11 +10,7 @@ class Character {
   String name;
   bool brave = false; 
   
-  Character(this.name) {
-    if (name.contains("Dart")) {
-      brave = true;
-    } 
-  }
+  Character(this.name);
   
   Future encourage() {
     // return new Future.________(new Duration(seconds:1), () { <- delayed

@@ -8,15 +8,11 @@ class Character {
   String name;
   bool brave = false;
   
-  Character(this.name) {
-    if (name.contains("Dart")) {
-      brave = true;
-    } 
-  }
+  Character(this.name);
   
   Future encourage() {
     return new Future.delayed(new Duration(seconds:1), () {
-      brave = true; 
+      return brave = true; 
     });
   }
 }
@@ -25,7 +21,7 @@ main() {
   print('begin main');
   var character = new Character('Mild-mannered Reporter');
   print('brave: ${character.brave}');
-  // character.encourage().________((_) => print('brave: ${character.brave}')); <- then
-  character.encourage().then((_) => print('brave: ${character.brave}'));
+  // character.encourage().________((b) => print('brave: $b')); <- then
+  character.encourage().then((b) => print('brave: $b'));
   print('end main');
 }

@@ -1,5 +1,5 @@
 /**
- * To react at the end of a Stream.
+ * To introduce the Stream class, a source of asynchronous data events.
  */
 
 import 'dart:async';
@@ -39,9 +39,8 @@ main() {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
      new Character("Captain Dart"), new Character("Bullseye")]; 
-  var onCharacter = (c) => print('Just seen: ${c.name}');
-  var noMoreCharacters = () => print('No more characters');
+  var onCharacter = (character) => print('Just seen: ${character.name}');
   var stream = watchCharacters(characters);
-  // stream.listen(onCharacter, onDone: ________); <- noMoreCharacters
-  stream.listen(onCharacter, onDone: noMoreCharacters);
+  // stream.listen(________); <- onCharacter
+  stream.listen(onCharacter);
 }
