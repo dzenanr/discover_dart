@@ -8,11 +8,7 @@ class Character {
   String name;
   bool brave = false;
   
-  Character(this.name) {
-    if (name.contains("Dart")) {
-      brave = true;
-    } 
-  }
+  Character(this.name);
 }
 
 Stream watchCharacters(List characters) {
@@ -42,6 +38,6 @@ main() {
   var onCharacter = (c) => print('Just seen: ${c.name}');
   var noMoreCharacters = () => print('No more characters');
   var stream = watchCharacters(characters);
-  // stream.listen(onCharacter, onDone: ________); <- noMoreCharacters
-  stream.listen(onCharacter, onDone: noMoreCharacters);
+  // stream.listen(onCharacter, ________); <- onDone:noMoreCharacters
+  stream.listen(onCharacter, onDone:noMoreCharacters);
 }

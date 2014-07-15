@@ -1,5 +1,5 @@
 /**
- * To filter heros in a Stream.
+ * To select heros in a Stream.
  */
 
 import 'dart:async';
@@ -44,6 +44,6 @@ main() {
   var onCharacter = (c) => print('Just seen: ${c.name}');
   var noMoreHeros = () => print('No more heros');
   var stream = watchCharacters(characters);
-  // stream.________.listen(onChar, onDone: noMoreHeros); <- where((c) => c.hero)
-  stream.where((c) => c.hero).listen(onCharacter, onDone: noMoreHeros);
+  // stream.________.listen(onCharacter, onDone:noMoreHeros); <- where((c) => c.hero)
+  stream.where((c) => c.hero).listen(onCharacter, onDone:noMoreHeros);
 }

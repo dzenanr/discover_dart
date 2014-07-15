@@ -8,11 +8,7 @@ class Character {
   String name;
   bool brave = false;
   
-  Character(this.name) {
-    if (name.contains("Dart")) {
-      brave = true;
-    } 
-  }
+  Character(this.name);
 }
 
 Stream watchCharacters(List characters) {
