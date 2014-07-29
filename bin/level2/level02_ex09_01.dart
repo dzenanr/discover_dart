@@ -1,5 +1,5 @@
 
-final bool DEBUG = true; // top level DEBUG variable
+const bool DEBUG = true; // top level DEBUG constant
 
 void log(String message) {
   if (DEBUG) {

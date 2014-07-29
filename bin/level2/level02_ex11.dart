@@ -1,5 +1,5 @@
 
-const bool DEBUG = true;
+final bool DEBUG = true;
 
 void log(message) {
   if (DEBUG) {        // uses the top-level DEBUG constant
@@ -13,8 +13,8 @@ main() {
   var heroName = "The Dart";
   log("Look, there goes $heroName");
 
-  const bool DEBUG = false;  // shadows the top-level DEBUG constant
-  if (!DEBUG) {
+  final bool DEBUG = false;  // shadows the top-level DEBUG variable
+  if (DEBUG) {
     print("Move along please... nothing to see here");
   }
 }
