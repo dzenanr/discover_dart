@@ -1,13 +1,8 @@
-
-
-heroMultiplier(String message) {
-  return (m, n) => "$message: $m x $n = ${m * n}";  
+Function adder(num n) {
+  // return (num i) => ________ + i; <- n
+  return (num i) => n + i;
 }
 
 main() {
-  var multiplier1 = heroMultiplier("The Dart multiplies"); 
-  print(multiplier1(50, 3));
-  
-  var multiplier2 = heroMultiplier("Prof. Polymer squares"); 
-  print(multiplier2(3, 3));
+  print('2 + 3 = ${adder(2)(3)}'); 
 }

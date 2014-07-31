@@ -2,9 +2,13 @@
 final bool DEBUG = false; // top level DEBUG variable
 
 void log(String message) {
-  if (DEBUG) {
+  display(String message) {
     print("LOG: $message");
-  } 
+  }
+  
+  if (DEBUG) {
+    display(message);
+  }
 }
 
 String spotHero(String hero) => "Look, there goes $hero";

@@ -1,6 +1,6 @@
 // former level02_ex25
 
-String heroCalculator(num x, num y, calcFunction(n, m)) {
+String heroCalculator(num x, num y, calcFunction(num n, num m)) {
   if (x == 0 && y == 0) {
     return "That's not a heroic calculation";
   } else {
@@ -9,7 +9,7 @@ String heroCalculator(num x, num y, calcFunction(n, m)) {
 }
 
 Function buildCalcFunc(String message) {
-  return  (m, n) => "$message: $m x $n = ${m * n}"; // returns a function that has "captured" the message variable
+  return  (num m, num n) => "$message: $m x $n = ${m * n}"; // returns a function that has "captured" the message variable
 }
 
 main() {

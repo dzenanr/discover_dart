@@ -14,15 +14,19 @@ Function buildCalcFunc() {
 
 main() {    
   var theDartMultiplies = buildCalcFunc(); 
-  
-  message = "Prof. Polymer squares";  
-  var profPolymerSquares = buildCalcFunc(); 
-  
-  message = "We do some calculations";
   var answer1 = heroCalculator(50, 3, theDartMultiplies); 
   print(answer1);
   
+  message = "Prof. Polymer squares";  
+  var profPolymerSquares = buildCalcFunc();
   var answer2 = heroCalculator(3, 3, profPolymerSquares); 
   print(answer2);
+  
+  message = "We do some calculations";
+  var answer3 = heroCalculator(50, 3, theDartMultiplies); 
+  print(answer3);
+  
+  var answer4 = heroCalculator(3, 3, profPolymerSquares); 
+  print(answer4);
 }
 
