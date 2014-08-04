@@ -1,25 +1,40 @@
-// former Interfaces
 
-class Hero {
-  String name;
-  List powers;
-     
-  Hero(this.name);
+abstract class Greeting {
+  sayHello();
 }
 
-class Villain {
+// ________ class Character implements Greeting { <- abstract
+abstract class Character implements Greeting {
   String name;
-     
-  Villain(this.name);
 }
 
-checkChar(char) => char.name.contains("Dart") ? "Hero" : "Villain";
+class Hero extends Character {
+  bool hasCape = true;
+
+  Hero(name) {
+    this.name = name;
+  }
+  
+  sayHello() { 
+    print("My name is $name and I am awesome.");
+  }
+}
+
+class Villain extends Character {
+  bool isEvilGenius = false;
+
+  Villain(name) {
+    this.name = name;
+  }
+  
+  sayHello() { 
+    print("My name is $name and I am mean.");
+  }
+}
 
 main() {
-  print(checkChar(new Hero("The Dart")));
-  print(checkChar(new Villain("Dr Slow"))); // villain is not a hero
+  var steve = new Hero("The Dart");
+  var joe = new Villain("Dr Slow");
+  steve.sayHello();
+  joe.sayHello();
 }
-
-
-
-

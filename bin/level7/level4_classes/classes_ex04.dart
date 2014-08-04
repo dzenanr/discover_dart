@@ -1,37 +1,52 @@
-// former Interfaces
 
-class SecretIdentity {
+abstract class Flight {
+  takeOff() => print("I am flying.");
+  land() => print("Landed safely.");
+}
+
+abstract class XrayVision {
+  watch(Character other) => print("I see how you work, ${other.name}.");
+}
+
+abstract class Greeting {
+  sayHello();
+}
+
+abstract class Character implements Greeting {
   String name;
 }
 
-// class Hero ________ { <- implements SecretIdentity
-class Hero implements SecretIdentity {
-  String name;
-  List powers;
-     
-  Hero(this.name);
+class Hero extends Character with Flight, XrayVision {
+  bool hasCape = true;
+
+  Hero(name) {
+    this.name = name;
+  }
   
-  sayHello() => print("I am an $this and my name is $name");
+  sayHello() { 
+    print("My name is $name and I am awesome.");
+  }
 }
 
-class Villain implements SecretIdentity {
-  String name;
-     
-  Villain(this.name);
-}
+class Villain extends Character with XrayVision {
+  bool isEvilGenius = false;
 
-checkChar(SecretIdentity char) => char.name.contains("Dart") ? "Hero" : "Villain";
+  Villain(name) {
+    this.name = name;
+  }
+  
+  sayHello() { 
+    print("My name is $name and I am mean.");
+  }
+}
 
 main() {
-  print(checkChar(new Hero("The Dart")));
-  print(checkChar(new Villain("Dr Slow"))); // villain is not a hero
-  
   var steve = new Hero("The Dart");
+  var joe = new Villain("Dr Slow");
   steve.sayHello();
-  print(steve is SecretIdentity); // true
-  print(steve is Hero); // true
+  // steve.________; <- takeOff()
+  steve.takeOff();
+  joe.sayHello();
+  // joe.________; <- watch(steve)
+  joe.watch(steve);
 }
-
-
-
-
