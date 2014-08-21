@@ -1,7 +1,7 @@
 main() {
-  var heroes = {'The Dart':null};  
-  var theDartValue = heroes['The Dart'];
-  var profPolymerValue = heroes['Prof. Polymer'];
-  print("The Dart is $theDartValue");
-  print("Prof. Polymer is $profPolymerValue");
+  var heroes = {'other language':null};  
+  var otherValue = heroes['other language'];
+  var profValue = heroes['prof'];
+  print("The other language is $otherValue");
+  print("Professor is $profValue");
 }
