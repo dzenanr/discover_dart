@@ -1,7 +1,7 @@
 // tactical_gear.dart
 library tactical_gear;
 
-import 'package:randomize/randomize.dart';
+import 'package:randomize/randomize.dart' show circle;
 
 import 'dart:math' show PI, sin, cos;
 

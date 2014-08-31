@@ -10,6 +10,7 @@ class InnocentBystander {
 
 main() {
   var person = new InnocentBystander();
-  person.age = 21;        // call the setter, which sets yearBorn
-  print(person.age);      // call the getter
+  person.age = 21;             // call the setter, which sets yearBorn
+  print('Age: ${person.age}'); // call the getter
+  print('Born: ${person.yearBorn}');
 }
