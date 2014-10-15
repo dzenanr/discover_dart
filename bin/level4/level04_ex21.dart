@@ -10,7 +10,7 @@ class Hero extends Character {
     this.name = name;
   }
 
-  sayHello() => print("I am an $this and my name is $name");
+  sayHello() => print("I am a ${this.runtimeType} and my name is $name");
 }
 
 main() {
