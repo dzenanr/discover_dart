@@ -5,5 +5,5 @@ class Gear {
   
   Gear(this.name);
   
-  String toString() => "${name}";
+  String toString() => "$name";
 }

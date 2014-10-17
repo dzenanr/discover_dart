@@ -8,10 +8,8 @@ class Gear {
   
   Gear(this.name);
   
-  String toString() => "${name}";
+  String toString() => "$name";
 }
-
-Gear gearUp(String name) => new Gear(name);
 
 powerUp(Gear gear) {
   print("rebuild with adamantium");

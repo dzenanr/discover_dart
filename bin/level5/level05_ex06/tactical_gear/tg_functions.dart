@@ -3,8 +3,6 @@
 // ________; <- part of tactical_gear
 part of tactical_gear;
 
-Gear gearUp(String name) => new Gear(name);
-
 powerUp(Gear gear) {
   print("rebuild with adamantium");
 }

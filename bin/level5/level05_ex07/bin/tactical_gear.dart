@@ -8,8 +8,6 @@ import 'dart:math' show PI, sin, cos;
 
 part 'tactical_gear/gear.dart';
 
-Gear gearUp(String name) => new Gear(name);
-
 powerUp(Gear gear) {
   print("rebuild with adamantium");
 }

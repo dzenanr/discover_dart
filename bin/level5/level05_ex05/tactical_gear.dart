@@ -12,8 +12,6 @@ class Gear {
   String toString() => "${name}";
 }
 
-Gear gearUp(String name) => new Gear(name);
-
 powerUp(Gear gear) {
   print("rebuild with adamantium");
 }
