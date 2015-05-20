@@ -1,5 +1,5 @@
 /**
- * To introduce the Stream class, a source of asynchronous data events.
+ * To react at the end of a Stream.
  */
 
 import 'dart:async';
@@ -11,13 +11,13 @@ class Character {
   Character(this.name);
 }
 
-Stream watchCharacters(List characters) {
+Stream<Character> watchCharacters(List<Character> characters) {
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
   // add the next character into the stream.
   int index = 0; 
-  new Timer.periodic(new Duration(seconds: 1), (Timer t) {
+  new Timer.periodic(new Duration(seconds:1), (Timer t) {
     if (index < characters.length) {
       controller.add(characters[index++]);
     } else {
@@ -31,12 +31,17 @@ Stream watchCharacters(List characters) {
   return controller.stream;
 }
 
-main() {
+main() async {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
      new Character("Captain Dart"), new Character("Bullseye")]; 
-  var onCharacter = (character) => print('Just seen: ${character.name}');
-  var stream = watchCharacters(characters);
-  // stream.listen(________); <- onCharacter
-  stream.listen(onCharacter);
+  //var onCharacter = (c) => print('Just seen: ${c.name}');
+  //var noMoreCharacters = () => print('No more characters');
+  //var stream = watchCharacters(characters);
+  // stream.listen(onCharacter, ________); <- onDone:noMoreCharacters
+  //stream.listen(onCharacter, onDone:noMoreCharacters);
+  await for (var character in watchCharacters(characters)) {
+    print('Just seen ${character.name}.');
+  }
+  print('No more characters.');
 }

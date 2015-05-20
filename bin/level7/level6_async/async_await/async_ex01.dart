@@ -1,6 +1,8 @@
 /**
  * To introduce the Completer class, 
  * in order to create a future and complete it later, without a known delay.
+ * 
+ * To use async await in the main function.
  */
 
 import 'dart:async';
@@ -16,7 +18,7 @@ class Character {
     } 
   }
   
-  Future changeMood() {
+  Future<List> changeMood() {
     var moodChanges = [];
     var changeCount = new Random().nextInt(10);
     var interval = new Duration(seconds:1);
@@ -34,10 +36,13 @@ class Character {
   }
 }
 
-main() {
+main() async {
   print('begin main');
   var character = new Character('Nasty Dog');
   print('Is ${character.name} brave? ${character.brave}');
-  character.changeMood().then((mc) => print('${character.name} mood changes: $mc')); 
+  //character.changeMood().then((mc) => print('${character.name} mood changes: $mc')); 
+  // var mc = ________ character.changeMood(); <- await
+  var mc = await character.changeMood();
+  print('${character.name} mood changes: $mc'); 
   print('end main');
 }

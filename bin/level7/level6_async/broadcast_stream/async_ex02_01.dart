@@ -21,7 +21,7 @@ class Character {
   bool get sidekick => !name.contains("Dart");
 }
 
-Stream watchCharacters() {
+Stream<Character> watchCharacters() {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
      new Character("Captain Dart"), new Character("Bullseye")]; 
@@ -44,10 +44,11 @@ Stream watchCharacters() {
   return controller.stream;
 }
 
-main() { 
+main() async { 
   var stream = watchCharacters();
   var broadcastStream = stream.asBroadcastStream();
   // listen for heros
+  /*
   broadcastStream
     .where((character)  => character.hero)
     .listen((character) => print('Seen hero: ${character.name}'), 
@@ -61,4 +62,16 @@ main() {
     .where((character)  => character.sidekick)
     .listen((character) => print('Seen sidekick: ${character.name}'),  
              onDone: () => print('No more sidekicks'));
+
+   */
+  await for (var character in broadcastStream) {
+    if (character.hero) {
+      print('Just seen ${character.name}.');
+    }
+    if (character.sidekick) {
+      print('Just seen ${character.name}.');
+    }
+  }
+  print('No more heros.');
+  print('No more sidekicks.');
 }

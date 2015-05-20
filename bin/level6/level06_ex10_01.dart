@@ -1,7 +1,5 @@
-// former Broadcast Streams: level04_ex10
-// current: Level07_6_ex01
 /**
- * To listen to a broadcast stream only once.
+ * To select heros in a Stream.
  */
 
 import 'dart:async';
@@ -17,13 +15,9 @@ class Character {
   }
   
   bool get hero => brave;
-  bool get sidekick => !name.contains("Dart");
 }
 
-Stream watchCharacters() {
-  var characters = 
-    [new Character("The Dart"), new Character("Prof. Polymer"), 
-     new Character("Captain Dart"), new Character("Bullseye")]; 
+Stream<Character> watchCharacters(List<Character> characters) { 
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
@@ -43,12 +37,19 @@ Stream watchCharacters() {
   return controller.stream;
 }
 
-main() {
-  var onCharacter = (c) => print('Just seen: ${c.name}');
-  var onNoMoreHeros = () => print('No more heros');
-  var onNoMoreSidekicks = () => print('No more sidekicks');
-  var stream = watchCharacters();
-  // var broadcastStream = stream.________; <- asBroadcastStream()
-  var broadcastStream = stream.asBroadcastStream();
-  broadcastStream.where((c) => c.hero).listen(onCharacter, onDone: onNoMoreHeros);
+main() async {
+  var characters = 
+    [new Character("The Dart"), new Character("Prof. Polymer"), 
+     new Character("Captain Dart"), new Character("Bullseye")];
+  //var onCharacter = (c) => print('Just seen: ${c.name}');
+  //var noMoreHeros = () => print('No more heros');
+  //var stream = watchCharacters(characters);
+  // stream.________.listen(onCharacter, onDone:noMoreHeros); <- where((c) => c.hero)
+  //stream.where((c) => c.hero).listen(onCharacter, onDone:noMoreHeros);
+  await for (var character in watchCharacters(characters)) {
+    if (character.hero) {
+      print('Just seen ${character.name}.');
+    }
+  }
+  print('No more heros.');
 }

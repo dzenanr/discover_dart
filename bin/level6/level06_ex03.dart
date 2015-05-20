@@ -22,7 +22,7 @@ class Character {
 
 main() {
   print('begin main');
-  var character = new Character('Mild-mannered Reporter');
+  var character = new Character('Mild-mannered reporter');
   print('brave: ${character.brave}');
   print(character.encourage());
   print('end main');

@@ -1,5 +1,7 @@
 /**
  * To introduce the Stream class, a source of asynchronous data events.
+ * 
+ * To use async* and await for.
  */
 
 import 'dart:async';
@@ -11,7 +13,8 @@ class Character {
   Character(this.name);
 }
 
-Stream watchCharacters(List characters) {
+/*
+Stream<Character> watchCharacters(List<Character> characters) {
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
@@ -30,13 +33,24 @@ Stream watchCharacters(List characters) {
   // This will happen before the timer's first one-second tick.
   return controller.stream;
 }
+*/
 
-main() {
+Stream<Character> watchCharacters(List<Character> characters) async* {
+  int index = 0;
+  while (index < characters.length) {
+    yield characters[index++];
+  }
+}
+
+main() async {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
      new Character("Captain Dart"), new Character("Bullseye")]; 
-  var onCharacter = (character) => print('Just seen: ${character.name}');
-  var stream = watchCharacters(characters);
+  //var onCharacter = (character) => print('Just seen: ${character.name}');
+  //var stream = watchCharacters(characters);
   // stream.listen(________); <- onCharacter
-  stream.listen(onCharacter);
+  //stream.listen(onCharacter);
+  await for (var character in watchCharacters(characters)) {
+    print('Just seen: ${character.name}');
+  }
 }

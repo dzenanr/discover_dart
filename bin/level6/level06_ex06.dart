@@ -31,8 +31,8 @@ class Character {
 
 main() {
   print('begin main');
-  var reporter = new Character('Mild-mannered Reporter');
+  var reporter = new Character('Mild-mannered reporter');
   reporter.encourage().then(
-    (c) => c.discourage().then((c) => print('reporter is discouraged')));
+    (c) => c.discourage().then((c) => print('${reporter.name } is discouraged')));
   print('end main');
 }
