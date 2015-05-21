@@ -15,11 +15,11 @@ class Character {
   }
   
   bool get hero => brave;  
-  // bool get sidekick => !name.________; <- contains("Dart")
-  bool get sidekick => !name.contains("Dart");
+  // bool get sidekick => ________; <- !hero
+  bool get sidekick => !hero;
 }
 
-Stream watchCharacters(List characters) {
+Stream<Character> watchCharacters(List<Character> characters) {
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
@@ -39,13 +39,13 @@ Stream watchCharacters(List characters) {
   return controller.stream;
 }
 
-main() {
+void main() {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
      new Character("Captain Dart"), new Character("Bullseye")]; 
-  var onCharacter = (c) => print('Just seen: ${c.name}');
-  var noMoreSidekicks = () => print('No more sidekicks');
+  var onCharacter = (c) => print('Just seen: ${c.name}.');
+  var noMoreSidekicks = () => print('No more sidekicks.');
   var stream = watchCharacters(characters);
-  // stream.________.listen(onCharacter, onDone:noMoreSidekicks); <- where((c) => c.sidekick)
-  stream.where((c) => c.sidekick).listen(onCharacter, onDone:noMoreSidekicks);
+  // stream.________.listen(onCharacter, onDone: noMoreSidekicks); <- where((c) => c.sidekick)
+  stream.where((c) => c.sidekick).listen(onCharacter, onDone: noMoreSidekicks);
 }

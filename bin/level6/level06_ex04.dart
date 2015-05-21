@@ -10,14 +10,14 @@ class Character {
   
   Character(this.name);
   
-  Future encourage() {
-    return new Future.delayed(new Duration(seconds:1), () {
+  Future<bool> encourage() {
+    return new Future.delayed(new Duration(seconds: 1), () {
       return brave = true; 
     });
   }
 }
 
-main() {
+void main() {
   print('begin main');
   var character = new Character('Mild-mannered reporter');
   print('brave: ${character.brave}');

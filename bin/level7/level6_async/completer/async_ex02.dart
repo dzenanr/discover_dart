@@ -17,7 +17,7 @@ class Character {
     } 
   }
   
-  Future<List> changeMood() {
+  Future<List<bool>> changeMood() {
     var completer = new Completer();
     if (brave) {
       // completer.________('$name is not moody.'); <- completeError
@@ -39,21 +39,12 @@ class Character {
   }
 }
 
-main() async {
+Future main() async {
   print('begin main');
   var character1 = new Character('Nasty Dog');
   print('Is ${character1.name} brave? ${character1.brave}');
-  //character1.changeMood().then((mc) => print('${character1.name} mood changes: $mc'));
-  //var mc1 = await character1.changeMood();
-  //print('${character1.name} mood changes: $mc1');
   var character2 = new Character('Dartisan');
-  print('Is ${character2.name} brave? ${character2.brave}');
-  /*
-  character2.changeMood()
-    .then((mc) => print('${character2.name} mood changes: $mc'))
-    // .________((e) => print('Uuups, $e')); <- catchError
-    .catchError((e) => print('Uuups, $e'));  
-   */ 
+  print('Is ${character2.name} brave? ${character2.brave}'); 
   try {
     var mc1 = await character1.changeMood();
     print('${character1.name} mood changes: $mc1');

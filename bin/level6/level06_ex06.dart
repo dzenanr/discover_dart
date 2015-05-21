@@ -10,18 +10,18 @@ class Character {
   
   Character(this.name);
   
-  Future encourage() {
-    return new Future.delayed(new Duration(seconds:1), () {
+  Future<Character> encourage() {
+    return new Future.delayed(new Duration(seconds: 1), () {
       brave = true;
       return this; 
     });
   }
   
-  Future discourage() {
+  Future<Character> discourage() {
     if (name.contains('Dart')) {
-      return new Future.error('Dart cannot be discouraged');
+      return new Future.error('$name cannot be discouraged.');
     } else {
-      return new Future.delayed(new Duration(seconds:1), () {
+      return new Future.delayed(new Duration(seconds: 1), () {
         brave = false;
         return this; 
       });
@@ -33,6 +33,6 @@ main() {
   print('begin main');
   var reporter = new Character('Mild-mannered reporter');
   reporter.encourage().then(
-    (c) => c.discourage().then((c) => print('${reporter.name } is discouraged')));
+    (c) => c.discourage().then((c) => print('${reporter.name} is discouraged.')));
   print('end main');
 }

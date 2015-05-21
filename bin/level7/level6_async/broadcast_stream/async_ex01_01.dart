@@ -1,7 +1,5 @@
-// former Broadcast Streams: level04_ex10
-// current: Level07_6_ex01
 /**
- * To listen to a broadcast stream only once.
+ * To use a broadcast stream only once.
  */
 
 import 'dart:async';
@@ -17,40 +15,23 @@ class Character {
   }
   
   bool get hero => brave;
-  bool get sidekick => !name.contains("Dart");
+  bool get sidekick => !hero;
 }
 
-Stream<Character> watchCharacters() {
+Stream<Character> watchCharacters(List<Character> characters) async* {
+  int index = 0;
+  while (index < characters.length) {
+    yield characters[index++];
+  }
+}
+
+Future main() async {
   var characters = 
     [new Character("The Dart"), new Character("Prof. Polymer"), 
      new Character("Captain Dart"), new Character("Bullseye")]; 
-  // Create a stream controller.
-  var controller = new StreamController();  
-  // Starting after 1 second, while not at the end of the list, 
-  // add the next character into the stream.
-  int index = 0; 
-  new Timer.periodic(new Duration(seconds:1), (Timer t) {
-    if (index < characters.length) {
-      controller.add(characters[index++]);
-    } else {
-      // no more characters left
-      t.cancel(); 
-      controller.close();
-     }
-  });
-  // Return the stream from the controller. 
-  // This will happen before the timer's first one-second tick.
-  return controller.stream;
-}
-
-main() async {
-  //var onCharacter = (c) => print('Just seen: ${c.name}');
-  //var onNoMoreHeros = () => print('No more heros');
-  //var onNoMoreSidekicks = () => print('No more sidekicks');
-  var stream = watchCharacters();
+  var stream = watchCharacters(characters);
   // var broadcastStream = stream.________; <- asBroadcastStream()
   var broadcastStream = stream.asBroadcastStream();
-  //broadcastStream.where((c) => c.hero).listen(onCharacter, onDone: onNoMoreHeros);
   await for (var character in broadcastStream) {
     if (character.hero) {
       print('Just seen ${character.name}.');

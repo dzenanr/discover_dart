@@ -3,6 +3,7 @@
 
 /**
  * To listen to a broadcast stream more than once.
+ * See: https://www.dartlang.org/articles/broadcast-streams/
  */
 
 import 'dart:async';
@@ -21,10 +22,7 @@ class Character {
   bool get sidekick => !name.contains("Dart");
 }
 
-Stream<Character> watchCharacters() {
-  var characters = 
-    [new Character("The Dart"), new Character("Prof. Polymer"), 
-     new Character("Captain Dart"), new Character("Bullseye")]; 
+Stream<Character> watchCharacters(List<Character> characters) {
   // Create a stream controller.
   var controller = new StreamController();  
   // Starting after 1 second, while not at the end of the list, 
@@ -44,14 +42,17 @@ Stream<Character> watchCharacters() {
   return controller.stream;
 }
 
-main() { 
-  var stream = watchCharacters();
+void main() { 
+  var characters = 
+    [new Character("The Dart"), new Character("Prof. Polymer"), 
+     new Character("Captain Dart"), new Character("Bullseye")]; 
+  var stream = watchCharacters(characters);
   var broadcastStream = stream.asBroadcastStream();
   // listen for heros
   broadcastStream
     .where((character)  => character.hero)
-    .listen((character) => print('Seen hero: ${character.name}'), 
-             onDone: () => print('No more heros'));
+    .listen((character) => print('Just seen hero: ${character.name}.'), 
+             onDone: () => print('No more heros.'));
   // listen for sidekicks
   // ________ <- broadcastStream
   // ________ <-   .where((character)  => character.sidekick)
@@ -59,6 +60,6 @@ main() {
   // ________ <-            onDone: () => print('No more sidekicks'));
   broadcastStream
     .where((character)  => character.sidekick)
-    .listen((character) => print('Seen sidekick: ${character.name}'),  
-             onDone: () => print('No more sidekicks'));
+    .listen((character) => print('Just seen sidekick: ${character.name}.'),  
+             onDone: () => print('No more sidekicks.'));
 }

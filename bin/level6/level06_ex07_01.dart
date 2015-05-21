@@ -10,7 +10,7 @@ class Character {
   
   Character(this.name);
   
-  Future encourage() {
+  Future<Character> encourage() {
     return new Future.delayed(new Duration(seconds: 1), () {
       brave = true;
       return this; 
@@ -29,17 +29,14 @@ class Character {
   }
 }
 
-main() async {
+Future main() async {
   print('begin main');
   var reporter = new Character('Mild-mannered reporter');
-  /*
-  reporter.encourage()
-    .then((c) => c.discourage())
-    .then((c) => print('reporter is discouraged'));
-   */
+  // var c1 = await ________; <- reporter.encourage()
   var c1 = await reporter.encourage();
-  print('${reporter.name} is encouraged: ${c1.brave}');
+  print('${reporter.name} is encouraged: brave is ${c1.brave}.');
+  // var c2 = await ________; <- reporter.discourage()
   var c2 = await reporter.discourage();
-  print('${reporter.name} is encouraged: ${c2.brave}');  
+  print('${reporter.name} is discouraged: brave is ${c2.brave}.');  
   print('end main');
 }

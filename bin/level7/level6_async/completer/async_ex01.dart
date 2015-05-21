@@ -18,7 +18,7 @@ class Character {
     } 
   }
   
-  Future<List> changeMood() {
+  Future<List<bool>> changeMood() {
     var moodChanges = [];
     var changeCount = new Random().nextInt(10);
     var interval = new Duration(seconds:1);
@@ -36,13 +36,12 @@ class Character {
   }
 }
 
-main() async {
+Future main() async {
   print('begin main');
   var character = new Character('Nasty Dog');
-  print('Is ${character.name} brave? ${character.brave}');
-  //character.changeMood().then((mc) => print('${character.name} mood changes: $mc')); 
-  // var mc = ________ character.changeMood(); <- await
-  var mc = await character.changeMood();
-  print('${character.name} mood changes: $mc'); 
+  print('Is ${character.name} brave? ${character.brave}'); 
+  // var moodChanges = ________ character.changeMood(); <- await
+  var moodChanges = await character.changeMood();
+  print('${character.name} mood changes: $moodChanges'); 
   print('end main');
 }

@@ -10,36 +10,32 @@ class Character {
   
   Character(this.name);
   
-  Future encourage() {
-    return new Future.delayed(new Duration(seconds:1), () {
+  Future<bool> encourage() {
+    return new Future.delayed(new Duration(seconds: 1), () {
       return brave = true; 
     });
   }
   
   Future<bool> discourage() {
     if (name.contains('Dart')) {
-      // return new Future.________('Dart cannot be discouraged'); <- error
-      return new Future.error('${name} cannot be discouraged.');
+      // return new Future.________('$name cannot be discouraged.'); <- error
+      return new Future.error('$name cannot be discouraged.');
     } else {
-      return new Future.delayed(new Duration(seconds:1), () {
+      return new Future.delayed(new Duration(seconds: 1), () {
         return brave = false; 
       });
     }
   }
 }
 
-main() async {
+Future main() async {
   print('begin main');
   var programmer = new Character('Dart beginner'); 
-  /*
-  programmer.discourage()
-    .then((b) => print('programmer is discouraged'))
-    //.________((e) => print('$e')); <- catchError
-    .catchError((e) => print('$e'));
-   */
+  // ________ { <- try
   try {
     var b = await programmer.discourage();
-    print('${programmer.name} programmer is discouraged: $b');
+    print('${programmer.name} is discouraged: brave is $b.');
+  // } ________(e) { <- catch
   } catch(e) {
     print('$e');
   }
