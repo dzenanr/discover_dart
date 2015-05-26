@@ -10,14 +10,14 @@ class Character {
   
   Character(this.name);
   
-  Future<Character> encourage() {
+  Future<Character> encourage() async {
     return new Future.delayed(new Duration(seconds: 1), () {
       brave = true;
       return this; 
     });
   }
   
-  Future<Character> discourage() {
+  Future<Character> discourage() async {
     if (name.contains('Dart')) {
       return new Future.error('${name} cannot be discouraged');
     } else {

@@ -15,7 +15,6 @@ class Character {
   }
   
   bool get hero => brave;  
-  // bool get sidekick => ________; <- !hero
   bool get sidekick => !hero;
 }
 

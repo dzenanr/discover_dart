@@ -29,7 +29,7 @@ class Character {
   }
 }
 
-main() {
+void main() {
   print('begin main');
   var reporter = new Character('Mild-mannered reporter');
   reporter.encourage().then(

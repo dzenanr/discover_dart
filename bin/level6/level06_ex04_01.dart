@@ -11,7 +11,7 @@ class Character {
   
   Character(this.name);
   
-  Future<bool> encourage() {
+  Future<bool> encourage() async {
     return new Future.delayed(new Duration(seconds: 1), () {
       return brave = true; 
     });
